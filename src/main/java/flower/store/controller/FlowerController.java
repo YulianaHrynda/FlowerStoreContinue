@@ -1,18 +1,26 @@
 package flower.store.controller;
 
-import flower.store.Flower;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import flower.store.Flower;
+import flower.store.FlowerColor;
 
 @RestController
-@RequestMapping("/api/flowers")  // Sets a base URL for all endpoints in this controller
+@RequestMapping("/api/flowers")
 public class FlowerController {
 
-    @GetMapping
-    public List<Flower> getFlowers() {
-        return List.of(new Flower("Rose", FlowerColor.RED, 10.0));
+    @GetMapping("/list")
+    public List<Flower> getFlower() {
+        double sepalLength = 11.5;
+        double price = 11.5;
+        Flower flower = new Flower();
+        flower.setPrice(price);
+        flower.setSepalLength(sepalLength);
+        flower.setColor(FlowerColor.RED);
+        
+        return List.of(flower);
     }
 }

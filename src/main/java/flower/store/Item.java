@@ -1,24 +1,19 @@
 package flower.store;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
 @AllArgsConstructor
-public class Item {
-    private String name;
+@NoArgsConstructor
+public abstract class Item {
+    @Setter
+    private String description;
     private double price;
-}
-
-import java.util.List;
-
-@Data
-public class Order {
-    private List<Item> items;
-    private double totalAmount;
-
-    public Order(List<Item> items) {
-        this.items = items;
-        this.totalAmount = items.stream().mapToDouble(Item::getPrice).sum();
+    public String getDescription() {
+        return description;
     }
+    abstract double getPrice();
 }
